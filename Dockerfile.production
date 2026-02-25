@@ -49,6 +49,9 @@ COPY --chown=appuser:appuser src/ ./src/
 COPY --chown=appuser:appuser prompts/ ./prompts/
 COPY --chown=appuser:appuser pyproject.toml README.md ./
 
+# Create logs directory with appropriate permissions
+RUN mkdir -p /app/logs && chown appuser:appuser /app/logs
+
 # Install project in non-editable mode
 RUN --mount=type=cache,target=/opt/uv-cache \
     uv sync --no-dev --no-editable
