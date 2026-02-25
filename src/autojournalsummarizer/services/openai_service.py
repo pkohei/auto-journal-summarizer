@@ -97,6 +97,7 @@ class OpenAIService:
                 },
             ],
             response_format=PaperSummary,
+            max_completion_tokens=2500,
         )
 
         return response.choices[0].message.parsed
