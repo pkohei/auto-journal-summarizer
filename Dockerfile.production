@@ -35,7 +35,9 @@ RUN --mount=type=cache,target=/opt/uv-cache \
 FROM uv-base as production
 
 # Create non-root user for security
-RUN groupadd -r appuser && useradd -r -g appuser appuser
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+RUN groupadd -r -g $GROUP_ID appuser && useradd -r -u $USER_ID -g $GROUP_ID appuser
 
 WORKDIR /app
 
